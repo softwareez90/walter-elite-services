@@ -1,0 +1,606 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Walter Elite Services | Exklusiver Online-Shop</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;700;900&family=Playfair+Display:ital,wght@1,400;1,700&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            /* Palette: Modern Luxury / "Electric Boutique" */
+            --bg-body: #050505;
+            --bg-card: #111111;
+            --bg-card-hover: #1a1a1a;
+            --text-main: #f2f2f2;
+            --text-muted: #888888;
+            --accent: #E0FF00; /* Acid Lime */
+            --accent-secondary: #8C52FF; /* Electric Purple */
+            --border: rgba(255, 255, 255, 0.1);
+            
+            /* Spacing */
+            --spacing-xs: 0.5rem;
+            --spacing-sm: 1rem;
+            --spacing-md: 2rem;
+            --spacing-lg: 4rem;
+            --spacing-xl: 8rem;
+
+            /* Transitions */
+            --ease: cubic-bezier(0.23, 1, 0.32, 1);
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Outfit', sans-serif;
+            background-color: var(--bg-body);
+            color: var(--text-main);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        h1, h2, h3, h4 {
+            font-weight: 900;
+            line-height: 1.1;
+            letter-spacing: -0.02em;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+            transition: color 0.3s var(--ease);
+        }
+
+        ul {
+            list-style: none;
+        }
+
+        /* --- NAVIGATION --- */
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            padding: var(--spacing-sm) var(--spacing-md);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 1000;
+            background: rgba(5, 5, 5, 0.8);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid var(--border);
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 900;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: var(--text-main);
+        }
+        .logo span { color: var(--accent); }
+
+        .nav-links {
+            display: flex;
+            gap: var(--spacing-md);
+        }
+
+        .nav-links a {
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            position: relative;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background-color: var(--accent);
+            transition: width 0.4s var(--ease);
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        /* Mobile Menu Button */
+        .menu-toggle {
+            display: none;
+            color: var(--text-main);
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+
+        /* --- HERO SECTION (Asymmetric Split) --- */
+        .hero {
+            min-height: 100vh;
+            display: grid;
+            grid-template-columns: 1.2fr 0.8fr;
+            padding-top: 80px; /* Nav height */
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-content {
+            padding: var(--spacing-xl) var(--spacing-lg);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            position: relative;
+            z-index: 2;
+        }
+
+        .hero-label {
+            color: var(--accent);
+            text-transform: uppercase;
+            letter-spacing: 0.2em;
+            font-size: 0.85rem;
+            margin-bottom: var(--spacing-sm);
+            font-weight: 700;
+        }
+
+        .hero h1 {
+            font-size: clamp(3rem, 6vw, 7rem);
+            margin-bottom: var(--spacing-md);
+            background: linear-gradient(to right, #fff, #888);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .hero-desc {
+            font-family: 'Playfair Display', serif;
+            font-style: italic;
+            font-size: 1.5rem;
+            color: var(--text-muted);
+            max-width: 500px;
+            margin-bottom: var(--spacing-lg);
+            border-left: 2px solid var(--accent);
+            padding-left: var(--spacing-sm);
+        }
+
+        .btn-primary {
+            display: inline-block;
+            background-color: var(--accent);
+            color: #000;
+            padding: 1rem 2.5rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            border: none;
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+            width: fit-content;
+            transition: transform 0.3s var(--ease);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-5px);
+            background-color: #fff;
+        }
+
+        /* Abstract Visual Side */
+        .hero-visual {
+            position: relative;
+            background: radial-gradient(circle at center, #1a1a1a 0%, #050505 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+
+        /* CSS Art Element */
+        .orb {
+            width: 30vw;
+            height: 30vw;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--accent), var(--accent-secondary));
+            filter: blur(80px);
+            opacity: 0.4;
+            animation: pulse 8s infinite alternate;
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); opacity: 0.4; }
+            100% { transform: scale(1.2); opacity: 0.6; }
+        }
+
+        /* --- MARQUEE --- */
+        .marquee-container {
+            background: var(--accent);
+            color: #000;
+            padding: 1rem 0;
+            overflow: hidden;
+            white-space: nowrap;
+            transform: rotate(-1deg) scale(1.02);
+            border-top: 2px solid #000;
+            border-bottom: 2px solid #000;
+        }
+
+        .marquee-content {
+            display: inline-block;
+            animation: scroll 20s linear infinite;
+            font-weight: 900;
+            font-size: 1.2rem;
+            text-transform: uppercase;
+        }
+
+        @keyframes scroll {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
+        }
+
+        /* --- BENTO GRID LAYOUT (Products/Services) --- */
+        .section-padding {
+            padding: var(--spacing-xl) var(--spacing-lg);
+        }
+
+        .grid-header {
+            margin-bottom: var(--spacing-lg);
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-end;
+            flex-wrap: wrap;
+            gap: 2rem;
+        }
+
+        .grid-header h2 {
+            font-size: 3rem;
+        }
+
+        .bento-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            grid-template-rows: repeat(2, 350px);
+            gap: var(--spacing-sm);
+        }
+
+        .bento-card {
+            background-color: var(--bg-card);
+            border: 1px solid var(--border);
+            padding: var(--spacing-md);
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            transition: all 0.4s var(--ease);
+            overflow: hidden;
+            group: cursor;
+        }
+
+        .bento-card:hover {
+            background-color: var(--bg-card-hover);
+            border-color: var(--accent);
+            transform: scale(0.99);
+        }
+
+        .card-number {
+            font-family: 'Playfair Display', serif;
+            font-style: italic;
+            font-size: 1.5rem;
+            color: var(--text-muted);
+        }
+
+        .card-content h3 {
+            font-size: 2rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .card-content p {
+            color: var(--text-muted);
+            font-size: 0.9rem;
+        }
+
+        .card-large {
+            grid-column: span 2;
+            grid-row: span 2;
+            background: linear-gradient(to bottom right, var(--bg-card), #151515);
+        }
+
+        .card-wide {
+            grid-column: span 2;
+        }
+
+        .card-tall {
+            grid-row: span 2; /* Fallback */
+        }
+
+        /* Abstract product visualization in CSS */
+        .product-abstract {
+            position: absolute;
+            right: -20px;
+            bottom: -20px;
+            width: 150px;
+            height: 150px;
+            background: var(--border);
+            border-radius: 20px;
+            transform: rotate(15deg);
+            transition: all 0.5s var(--ease);
+        }
+
+        .bento-card:hover .product-abstract {
+            background: var(--accent);
+            transform: rotate(0deg) scale(1.1);
+        }
+
+        /* --- ABOUT/PHILOSOPHY --- */
+        .philosophy {
+            background-color: var(--text-main);
+            color: var(--bg-body);
+            padding: var(--spacing-xl) var(--spacing-lg);
+            text-align: center;
+        }
+
+        .philosophy h2 {
+            font-size: clamp(2rem, 5vw, 4rem);
+            margin-bottom: var(--spacing-md);
+            max-width: 900px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .philosophy p {
+            max-width: 600px;
+            margin: 0 auto;
+            font-size: 1.2rem;
+            color: #333;
+        }
+
+        /* --- FOOTER --- */
+        footer {
+            border-top: 1px solid var(--border);
+            padding: var(--spacing-xl) var(--spacing-lg) var(--spacing-md);
+            background: #000;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr;
+            gap: var(--spacing-lg);
+            margin-bottom: var(--spacing-xl);
+        }
+
+        .footer-brand h2 {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+            color: var(--accent);
+        }
+
+        .footer-address {
+            font-style: normal;
+            color: var(--text-muted);
+            font-size: 1.1rem;
+        }
+
+        .footer-links h4 {
+            margin-bottom: 1.5rem;
+            font-size: 1.2rem;
+        }
+
+        .footer-links ul li {
+            margin-bottom: 0.8rem;
+        }
+
+        .footer-links a:hover {
+            color: var(--accent);
+            padding-left: 5px;
+        }
+
+        .footer-bottom {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-top: 1px solid var(--border);
+            padding-top: var(--spacing-md);
+            color: #444;
+            font-size: 0.9rem;
+        }
+
+        /* --- RESPONSIVE --- */
+        @media (max-width: 1024px) {
+            .hero {
+                grid-template-columns: 1fr;
+                padding-top: 100px;
+            }
+            .hero-visual {
+                display: none; /* Hide abstract on tablet/portrait to focus on copy */
+            }
+            .hero h1 {
+                font-size: 12vw;
+            }
+            .bento-grid {
+                grid-template-columns: 1fr;
+                grid-template-rows: auto;
+            }
+            .card-large, .card-wide, .card-tall {
+                grid-column: span 1;
+                grid-row: span 1;
+                min-height: 300px;
+            }
+            .footer-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .navbar {
+                padding: 1rem;
+            }
+            .nav-links {
+                display: none; /* Simplification for this output */
+            }
+            .menu-toggle {
+                display: block;
+            }
+            .section-padding {
+                padding: var(--spacing-lg) 1rem;
+            }
+            .hero-content {
+                padding: 2rem 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Navigation -->
+    <nav class="navbar">
+        <a href="index.html" class="logo">Walter <span>Elite</span></a>
+        
+        <div class="nav-links">
+            <a href="index.html">Startseite</a>
+            <a href="ueber-uns.html">Über uns</a>
+            <a href="leistungen.html">Kollektionen</a>
+            <a href="kontakt.html">Kontakt</a>
+            <a href="impressum.html">Impressum</a>
+        </div>
+        
+        <div class="menu-toggle">☰</div>
+    </nav>
+
+    <main>
+        <!-- Hero Section -->
+        <header class="hero">
+            <div class="hero-content">
+                <span class="hero-label">Willkommen in der Zukunft</span>
+                <h1>Exklusivität<br>neu definiert.</h1>
+                <p class="hero-desc">
+                    Wir kuratieren nicht einfach Produkte. Wir definieren Lebensstile. Entdecken Sie Premium-Electronics und Design-Objekte für höchste Ansprüche.
+                </p>
+                <a href="leistungen.html" class="btn-primary">Kollektion 2026 ansehen</a>
+            </div>
+            <div class="hero-visual">
+                <div class="orb"></div>
+            </div>
+        </header>
+
+        <!-- Marquee / Ticker -->
+        <div class="marquee-container">
+            <div class="marquee-content">
+                 +++ KOSTENLOSER EXPRESSVERSAND +++ LIMITIERTE STÜCKZAHLEN +++ DESIGNER GADGETS +++ WALTER ELITE SERVICES +++ NEXT GEN TECHNOLOGY +++ 
+                 +++ KOSTENLOSER EXPRESSVERSAND +++ LIMITIERTE STÜCKZAHLEN +++ DESIGNER GADGETS +++ WALTER ELITE SERVICES +++ NEXT GEN TECHNOLOGY +++
+            </div>
+        </div>
+
+        <!-- Bento Grid / Shop Categories -->
+        <section class="section-padding">
+            <div class="grid-header">
+                <h2>Unsere Welten</h2>
+                <p style="color: var(--text-muted); max-width: 300px;">
+                    Sorgfältig ausgewählte Kategorien für den modernen Connoisseur.
+                </p>
+            </div>
+
+            <div class="bento-grid">
+                <!-- Card 1: Main Highlight -->
+                <article class="bento-card card-large">
+                    <span class="card-number">01</span>
+                    <div class="product-abstract"></div>
+                    <div class="card-content">
+                        <h3>High-End Audio</h3>
+                        <p>Klang in seiner reinsten Form. Audiophile Kopfhörer und Soundsysteme.</p>
+                    </div>
+                </article>
+
+                <!-- Card 2 -->
+                <article class="bento-card">
+                    <span class="card-number">02</span>
+                    <div class="product-abstract" style="background: var(--accent-secondary);"></div>
+                    <div class="card-content">
+                        <h3>Smart Home</h3>
+                        <p>Intelligente Automatisierung für maximalen Komfort.</p>
+                    </div>
+                </article>
+
+                <!-- Card 3 -->
+                <article class="bento-card">
+                    <span class="card-number">03</span>
+                    <div class="card-content">
+                        <h3>Workplace</h3>
+                        <p>Ergonomie trifft auf futuristisches Design.</p>
+                    </div>
+                </article>
+
+                <!-- Card 4: Wide -->
+                <article class="bento-card card-wide">
+                    <span class="card-number">04</span>
+                    <div class="card-content">
+                        <h3>Walter Signature Series</h3>
+                        <p>Unsere Eigenmarke. Kompromisslose Qualität, handverlesen in Düsseldorf.</p>
+                    </div>
+                </article>
+            </div>
+        </section>
+
+        <!-- Philosophy / About Teaser -->
+        <section class="philosophy">
+            <span style="text-transform: uppercase; letter-spacing: 2px; font-weight: bold; font-size: 0.8rem;">Das Versprechen</span>
+            <h2>"Wir verkaufen keine Produkte. Wir bieten Zugang zu einer besseren Lebensqualität."</h2>
+            <p>
+                Walter Elite Services steht seit Gründung für den Unterschied zwischen 'gut' und 'außergewöhnlich'. 
+                Jedes Stück in unserem Inventar durchläuft eine strenge Qualitätsprüfung.
+            </p>
+            <br>
+            <a href="ueber-uns.html" style="border-bottom: 2px solid #000; font-weight: bold; padding-bottom: 5px;">Mehr über uns erfahren</a>
+        </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-grid">
+            <div class="footer-brand">
+                <h2>WALTER ELITE</h2>
+                <address class="footer-address">
+                    Walter Elite Services<br>
+                    Ackerstraße 88<br>
+                    40233 Düsseldorf<br>
+                    Deutschland
+                </address>
+                <br>
+                <a href="mailto:info@walter-elite.de" style="color:white; text-decoration: underline;">info@walter-elite.de</a>
+            </div>
+
+            <div class="footer-links">
+                <h4>Navigation</h4>
+                <ul>
+                    <li><a href="index.html">Startseite</a></li>
+                    <li><a href="ueber-uns.html">Über uns</a></li>
+                    <li><a href="leistungen.html">Shop</a></li>
+                    <li><a href="kontakt.html">Kontakt</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-links">
+                <h4>Rechtliches</h4>
+                <ul>
+                    <li><a href="impressum.html">Impressum</a></li>
+                    <li><a href="#">Datenschutz</a></li>
+                    <li><a href="#">AGB</a></li>
+                    <li><a href="#">Widerruf</a></li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="footer-bottom">
+            <span>&copy; 2026 Walter Elite Services. Alle Rechte vorbehalten.</span>
+            <span>Design: Award-Winning Studio</span>
+        </div>
+    </footer>
+
+</body>
+</html>

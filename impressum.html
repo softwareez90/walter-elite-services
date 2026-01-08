@@ -1,0 +1,447 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Impressum | Walter Elite Services</title>
+    
+    <!-- Google Fonts Import -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;700;900&family=Playfair+Display:ital,wght@0,400;1,400&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            /* Palette: Modern Luxury / "Electric Boutique" */
+            --bg-body: #050505;
+            --bg-card: #111111;
+            --bg-card-hover: #1a1a1a;
+            --text-main: #f2f2f2;
+            --text-muted: #888888;
+            --accent: #E0FF00; /* Acid Lime */
+            --accent-secondary: #8C52FF; /* Electric Purple */
+            --border: rgba(255, 255, 255, 0.1);
+            
+            /* Spacing */
+            --spacing-xs: 0.5rem;
+            --spacing-sm: 1rem;
+            --spacing-md: 2rem;
+            --spacing-lg: 4rem;
+            --spacing-xl: 8rem;
+
+            /* Transitions */
+            --ease: cubic-bezier(0.23, 1, 0.32, 1);
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Outfit', sans-serif;
+            background-color: var(--bg-body);
+            color: var(--text-main);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        h1, h2, h3, h4 {
+            font-weight: 900;
+            line-height: 1.1;
+            letter-spacing: -0.02em;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+            transition: color 0.3s var(--ease);
+        }
+
+        ul {
+            list-style: none;
+        }
+
+        /* --- NAVIGATION --- */
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            padding: var(--spacing-sm) var(--spacing-md);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 1000;
+            background: rgba(5, 5, 5, 0.8);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid var(--border);
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 900;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: var(--text-main);
+        }
+        .logo span { color: var(--accent); }
+
+        .nav-links {
+            display: flex;
+            gap: var(--spacing-md);
+        }
+
+        .nav-links a {
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            position: relative;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background-color: var(--accent);
+            transition: width 0.4s var(--ease);
+        }
+
+        .nav-links a:hover::after,
+        .nav-links a.active::after {
+            width: 100%;
+        }
+        
+        .nav-links a.active {
+            color: var(--accent);
+        }
+
+        /* Mobile Menu Button */
+        .menu-toggle {
+            display: none;
+            color: var(--text-main);
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+
+        /* --- HERO SECTION (Modified for Impressum) --- */
+        .hero-mini {
+            min-height: 40vh;
+            display: flex;
+            align-items: flex-end;
+            padding-top: 120px;
+            position: relative;
+            overflow: hidden;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .hero-label {
+            color: var(--accent);
+            text-transform: uppercase;
+            letter-spacing: 0.2em;
+            font-size: 0.85rem;
+            margin-bottom: var(--spacing-sm);
+            font-weight: 700;
+        }
+
+        .hero-mini h1 {
+            font-size: clamp(3rem, 5vw, 5rem);
+            background: linear-gradient(to right, #fff, #888);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin: 0;
+        }
+
+        /* Background Abstract */
+        .bg-orb {
+            position: absolute;
+            top: -10%;
+            right: -10%;
+            width: 40vw;
+            height: 40vw;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--accent), var(--accent-secondary));
+            filter: blur(100px);
+            opacity: 0.15;
+            z-index: -1;
+            pointer-events: none;
+        }
+
+        /* --- IMPRESSUM CONTENT --- */
+        .section-padding {
+            padding: var(--spacing-xl) var(--spacing-lg);
+        }
+
+        .impressum-grid {
+            display: grid;
+            grid-template-columns: 1fr 2fr;
+            gap: var(--spacing-lg);
+        }
+
+        .legal-card {
+            background-color: var(--bg-card);
+            border: 1px solid var(--border);
+            padding: var(--spacing-md);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .legal-card h3 {
+            color: var(--accent);
+            font-size: 1.5rem;
+            margin-bottom: var(--spacing-sm);
+        }
+
+        .legal-card p {
+            color: var(--text-main);
+            margin-bottom: 1rem;
+        }
+
+        .legal-text-block h4 {
+            font-size: 1.2rem;
+            margin-bottom: 1rem;
+            margin-top: 2rem;
+            color: var(--text-main);
+        }
+        
+        .legal-text-block h4:first-child {
+            margin-top: 0;
+        }
+
+        .legal-text-block p {
+            color: var(--text-muted);
+            margin-bottom: 1rem;
+            text-align: justify;
+        }
+        
+        .product-abstract {
+            position: absolute;
+            right: -20px;
+            bottom: -20px;
+            width: 100px;
+            height: 100px;
+            background: var(--border);
+            border-radius: 20px;
+            transform: rotate(15deg);
+            opacity: 0.5;
+        }
+
+        /* --- FOOTER --- */
+        footer {
+            border-top: 1px solid var(--border);
+            padding: var(--spacing-xl) var(--spacing-lg) var(--spacing-md);
+            background: #000;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr;
+            gap: var(--spacing-lg);
+            margin-bottom: var(--spacing-xl);
+        }
+
+        .footer-brand h2 {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+            color: var(--accent);
+        }
+
+        .footer-address {
+            font-style: normal;
+            color: var(--text-muted);
+            font-size: 1.1rem;
+        }
+
+        .footer-links h4 {
+            margin-bottom: 1.5rem;
+            font-size: 1.2rem;
+        }
+
+        .footer-links ul li {
+            margin-bottom: 0.8rem;
+        }
+
+        .footer-links a:hover {
+            color: var(--accent);
+            padding-left: 5px;
+        }
+
+        .footer-bottom {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-top: 1px solid var(--border);
+            padding-top: var(--spacing-md);
+            color: #444;
+            font-size: 0.9rem;
+        }
+
+        /* --- RESPONSIVE --- */
+        @media (max-width: 1024px) {
+            .impressum-grid {
+                grid-template-columns: 1fr;
+            }
+            .section-padding {
+                padding: var(--spacing-lg) var(--spacing-sm);
+            }
+            .hero-mini h1 {
+                font-size: 10vw;
+            }
+            .footer-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .navbar {
+                padding: 1rem;
+            }
+            .nav-links {
+                display: none;
+            }
+            .menu-toggle {
+                display: block;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- NAVIGATION -->
+    <nav class="navbar">
+        <a href="index.html" class="logo">Walter <span>Elite</span></a>
+        
+        <div class="nav-links">
+            <a href="index.html">Startseite</a>
+            <a href="ueber-uns.html">Über uns</a>
+            <a href="leistungen.html">Kollektionen</a>
+            <a href="kontakt.html">Kontakt</a>
+            <a href="impressum.html" class="active">Impressum</a>
+        </div>
+        
+        <div class="menu-toggle">☰</div>
+    </nav>
+
+    <!-- HEADER SECTION -->
+    <header class="hero-mini">
+        <div class="bg-orb"></div>
+        <div class="section-padding" style="width: 100%;">
+            <div class="hero-label">Transparenz & Recht</div>
+            <h1>Impressum</h1>
+        </div>
+    </header>
+
+    <!-- IMPRESSUM CONTENT -->
+    <main class="section-padding">
+        <div class="impressum-grid">
+            
+            <!-- Linke Spalte: Die harten Fakten -->
+            <aside>
+                <div class="legal-card">
+                    <h3>Angaben gemäß § 5 TMG</h3>
+                    <p style="font-size: 1.1rem; font-weight: bold;">Walter Elite Services</p>
+                    <p style="color: var(--text-muted); font-family: 'Playfair Display', serif; font-style: italic;">
+                        Ackerstraße 88<br>
+                        40233 Düsseldorf<br>
+                        Deutschland
+                    </p>
+                    
+                    <div style="margin-top: 2rem;">
+                        <p><strong>Vertreten durch:</strong><br>Theodora Walter</p>
+                    </div>
+
+                    <div style="margin-top: 2rem;">
+                        <p><strong>Kontakt:</strong><br>
+                        E-Mail: <a href="mailto:info@walter-elite.de" style="color: var(--accent);">info@walter-elite.de</a></p>
+                    </div>
+                    
+                    <div class="product-abstract"></div>
+                </div>
+            </aside>
+
+            <!-- Rechte Spalte: Rechtstexte -->
+            <article class="legal-text-block">
+                <h4>Umsatzsteuer-ID</h4>
+                <p>Umsatzsteuer-Identifikationsnummer gemäß § 27 a Umsatzsteuergesetz:<br>
+                [Wird nachgereicht]</p>
+
+                <h4>EU-Streitschlichtung</h4>
+                <p>Die Europäische Kommission stellt eine Plattform zur Online-Streitbeilegung (OS) bereit: 
+                <a href="https://ec.europa.eu/consumers/odr/" target="_blank" style="text-decoration: underline;">https://ec.europa.eu/consumers/odr/</a>.<br>
+                Unsere E-Mail-Adresse finden Sie oben im Impressum.</p>
+
+                <h4>Verbraucherstreitbeilegung / Universalschlichtungsstelle</h4>
+                <p>Wir sind nicht bereit oder verpflichtet, an Streitbeilegungsverfahren vor einer Verbraucherschlichtungsstelle teilzunehmen.</p>
+
+                <h4>Haftung für Inhalte</h4>
+                <p>Als Diensteanbieter sind wir gemäß § 7 Abs.1 TMG für eigene Inhalte auf diesen Seiten nach den allgemeinen Gesetzen verantwortlich. Nach §§ 8 bis 10 TMG sind wir als Diensteanbieter jedoch nicht verpflichtet, übermittelte oder gespeicherte fremde Informationen zu überwachen oder nach Umständen zu forschen, die auf eine rechtswidrige Tätigkeit hinweisen. Verpflichtungen zur Entfernung oder Sperrung der Nutzung von Informationen nach den allgemeinen Gesetzen bleiben hiervon unberührt. Eine diesbezügliche Haftung ist jedoch erst ab dem Zeitpunkt der Kenntnis einer konkreten Rechtsverletzung möglich. Bei Bekanntwerden von entsprechenden Rechtsverletzungen werden wir diese Inhalte umgehend entfernen.</p>
+
+                <h4>Haftung für Links</h4>
+                <p>Unser Angebot enthält Links zu externen Websites Dritter, auf deren Inhalte wir keinen Einfluss haben. Deshalb können wir für diese fremden Inhalte auch keine Gewähr übernehmen. Für die Inhalte der verlinkten Seiten ist stets der jeweilige Anbieter oder Betreiber der Seiten verantwortlich. Die verlinkten Seiten wurden zum Zeitpunkt der Verlinkung auf mögliche Rechtsverstöße überprüft. Rechtswidrige Inhalte waren zum Zeitpunkt der Verlinkung nicht erkennbar. Eine permanente inhaltliche Kontrolle der verlinkten Seiten ist jedoch ohne konkrete Anhaltspunkte einer Rechtsverletzung nicht zumutbar. Bei Bekanntwerden von Rechtsverletzungen werden wir derartige Links umgehend entfernen.</p>
+
+                <h4>Urheberrecht</h4>
+                <p>Die durch die Seitenbetreiber erstellten Inhalte und Werke auf diesen Seiten unterliegen dem deutschen Urheberrecht. Die Vervielfältigung, Bearbeitung, Verbreitung und jede Art der Verwertung außerhalb der Grenzen des Urheberrechtes bedürfen der schriftlichen Zustimmung des jeweiligen Autors bzw. Erstellers. Downloads und Kopien dieser Seite sind nur für den privaten, nicht kommerziellen Gebrauch gestattet. Soweit die Inhalte auf dieser Seite nicht vom Betreiber erstellt wurden, werden die Urheberrechte Dritter beachtet. Insbesondere werden Inhalte Dritter als solche gekennzeichnet. Sollten Sie trotzdem auf eine Urheberrechtsverletzung aufmerksam werden, bitten wir um einen entsprechenden Hinweis. Bei Bekanntwerden von Rechtsverletzungen werden wir derartige Inhalte umgehend entfernen.</p>
+            </article>
+
+        </div>
+    </main>
+
+    <!-- MARQUEE DIVIDER -->
+    <div class="marquee-container">
+        <div class="marquee-content">
+            +++ LEGAL NOTICE +++ WALTER ELITE SERVICES +++ TRANSPARENCY +++ TRUST +++ LEGAL NOTICE +++ WALTER ELITE SERVICES +++ TRANSPARENCY +++ TRUST +++
+        </div>
+    </div>
+
+    <!-- FOOTER -->
+    <footer>
+        <div class="footer-grid">
+            <div class="footer-brand">
+                <h2>WALTER ELITE</h2>
+                <address class="footer-address">
+                    Walter Elite Services<br>
+                    Ackerstraße 88<br>
+                    40233 Düsseldorf<br>
+                    Deutschland
+                </address>
+                <br>
+                <a href="mailto:info@walter-elite.de" style="color:white; text-decoration: underline;">info@walter-elite.de</a>
+            </div>
+
+            <div class="footer-links">
+                <h4>Navigation</h4>
+                <ul>
+                    <li><a href="index.html">Startseite</a></li>
+                    <li><a href="ueber-uns.html">Über uns</a></li>
+                    <li><a href="leistungen.html">Shop</a></li>
+                    <li><a href="kontakt.html">Kontakt</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-links">
+                <h4>Rechtliches</h4>
+                <ul>
+                    <li><a href="impressum.html">Impressum</a></li>
+                    <li><a href="#">Datenschutz</a></li>
+                    <li><a href="#">AGB</a></li>
+                    <li><a href="#">Widerruf</a></li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="footer-bottom">
+            <span>&copy; 2026 Walter Elite Services. Alle Rechte vorbehalten.</span>
+            <span>Design: Award-Winning Studio</span>
+        </div>
+    </footer>
+
+</body>
+</html>
